@@ -128,7 +128,10 @@ class HBNBCommand(cmd.Cmd):
         for param in args:
             param = param.split('=')
             if param[1]:
-                param[1] = param[1].replace('"', '')
+                param[1] = param[1].replace('_', ' ')
+                param[1] = param[1].lstrip('"')
+                param[1] = param[1].rstrip('"')
+                param[1] = param[1].replace('"', '\"')
             if param[0]:
                 new_instance.__dict__[param[0]] = param[1]
 
