@@ -3,6 +3,7 @@
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
+import os
 
 
 class DBStorage():
@@ -11,7 +12,12 @@ class DBStorage():
     __session = None
 
     def __init__(self) -> None:
-        self.__engine = create_engine()
+        self.__engine = create_engine(
+            'mysql+mysqldb://{}:{}@{}/{}'.format(
+                os.getenv('HBNB_MYSQL_USER'),
+                os.getenv('HBNB_MYSQL_PWD'),
+                os.getenv('HBNB_MYSQL_HOST'),
+                os.getenv('HBNB_MYSQL_DB')), pool_pre_ping=True)
 
     def all(self, cls=None):
         pass
