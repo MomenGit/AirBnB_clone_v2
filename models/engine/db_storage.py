@@ -33,12 +33,13 @@ class DBStorage():
             return cls_objects
 
     def new(self, obj):
-        """"""
+        """add the object to the current database session"""
         if obj is not None:
             self.__session.add(obj)
 
     def save(self):
-        pass
+        """commit all changes of the current database session"""
+        self.__session.commit()
 
     def delete(self, obj=None):
         pass
