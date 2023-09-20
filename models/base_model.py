@@ -7,6 +7,7 @@ from sqlalchemy import Column, String, Integer, DateTime
 
 Base = declarative_base()
 
+
 class BaseModel:
     """A base class for all hbnb models"""
 
@@ -24,13 +25,13 @@ class BaseModel:
         else:
             if "updated_at" in kwargs:
                 kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
+                                                         '%Y-%m-%dT%H:%M:%S.%f')
             else:
                 self.created_at = datetime.now()
 
             if "created_at" in kwargs:
                 kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
+                                                         '%Y-%m-%dT%H:%M:%S.%f')
             else:
                 self.updated_at = datetime.now()
 
@@ -66,7 +67,7 @@ class BaseModel:
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
 
-        # remove the key _sa_instance_state from the dictionary 
+        # remove the key _sa_instance_state from the dictionary
         if "_sa_instance_state" in dictionary:
             del dictionary["_sa_instance_state"]
         return dictionary
