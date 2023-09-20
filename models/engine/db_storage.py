@@ -47,6 +47,10 @@ class DBStorage():
             self.__session.delete(obj)
 
     def reload(self):
+        """
+        create all tables in the database and
+        create the current database session
+        """
         from models.base_model import Base
         from models.base_model import BaseModel
         from models.user import User
