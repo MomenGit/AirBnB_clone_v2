@@ -4,7 +4,6 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, Float, Table, ForeignKey
 from sqlalchemy.orm import relationship
 from models.review import Review
-from models.amenity import Amenity
 
 place_amenity = Table('place_amenity', Base.metadata,
                       Column('place_id', String(60), ForeignKey('places.id'),
@@ -61,6 +60,7 @@ class Place(BaseModel, Base):
             linked to the Place
             """
             from models import storage
+            from models.amenity import Amenity
             list_amenities = list()
             for obj in storage.all(Amenity).values():
                 if obj.id in self.amenity_ids:
@@ -74,6 +74,7 @@ class Place(BaseModel, Base):
             that handles append method for
             adding an Amenity.id to the attribute amenity_ids
             """
+            from models.amenity import Amenity
             if isinstance(obj, Amenity):
                 if obj not in self.amenity_ids:
                     self.amenity_ids.append(obj.id)
