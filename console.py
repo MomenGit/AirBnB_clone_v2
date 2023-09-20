@@ -219,7 +219,8 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            print([str(obj) for obj in storage.all(HBNBCommand.classes[args]).values()
+            print([str(obj) for obj
+                   in storage.all(HBNBCommand.classes[args]).values()
                    if obj.__class__.__name__ == args])
             # for k, v in storage.all().items():
             #    if k.split('.')[0] == args:
