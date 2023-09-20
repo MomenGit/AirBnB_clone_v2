@@ -39,7 +39,8 @@ class DBStorage():
         if cls is not None:
             objects = self.__session.query(cls).all()
         else:
-            from models import base_model, user, place, state, city, amenity, review
+            from models import base_model, user, place, state
+            from models import city, amenity, review
             objects = self.__session.query(
                 base_model.BaseModel,
                 user.User,
