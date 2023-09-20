@@ -42,7 +42,9 @@ class DBStorage():
         self.__session.commit()
 
     def delete(self, obj=None):
-        pass
+        """delete from the current database session obj if not None"""
+        if obj is not None:
+            self.__session.delete(obj)
 
     def reload(self):
         from models.base_model import Base
