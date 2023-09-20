@@ -33,7 +33,9 @@ class DBStorage():
             return cls_objects
 
     def new(self, obj):
-        pass
+        """"""
+        if obj is not None:
+            self.__session.add(obj)
 
     def save(self):
         pass
