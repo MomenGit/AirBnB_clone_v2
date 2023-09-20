@@ -25,12 +25,26 @@ class DBStorage():
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
+        objects = None
+        objects_dict = {}
         if cls is not None:
-            cls_objects = {}
-            for key, val in self.__session.query(cls).all():
-                if cls == val.__class__:
-                    cls_objects[key] = val
-            return cls_objects
+            objects = self.__session.query(cls).all()
+        else:
+            from models import base_model, user, place, state, city, amenity, review
+            objects = self.__session.query(
+                base_model.BaseModel,
+                user.User,
+                city.City,
+                place.Place,
+                state.State,
+                amenity.Amenity,
+                review.Review
+            ).all()
+
+        for obj in objects:
+            key = "{}.{}".format(obj.__class__.__name__, obj.id)
+            objects_dict[key] = obj
+        return objects_dict
 
     def new(self, obj):
         """add the object to the current database session"""
