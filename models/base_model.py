@@ -34,7 +34,7 @@ class BaseModel:
             else:
                 self.updated_at = datetime.now()
 
-            if "id" not in kwarg:
+            if "id" not in kwargs:
                 self.id = str(uuid.uuid4())
 
             if "__class__" in kwargs:
