@@ -10,11 +10,11 @@ def do_pack():
     of your AirBnB Clone repo
     """
     ops.local("mkdir versions")
-    file_path = "versions/web_static_{}.tar".format(
+    file_path = "versions/web_static_{}.tgz".format(
         datetime.utcnow().strftime("%Y%m%d%H%M%S"))
-    tar_file = ops.local(
+    tgz_file = ops.local(
         "tar -cvzf {} ./web_static".format(file_path), capture=True)
-    if tar_file.failed:
+    if tgz_file.failed:
         return None
     else:
         return file_path
