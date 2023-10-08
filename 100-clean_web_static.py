@@ -2,7 +2,7 @@
 """Defines the function do_clean"""
 from fabric.api import sudo, local, env
 
-# env.hosts = ['100.26.235.86', '100.26.153.227']
+env.hosts = ['100.26.235.86', '100.26.153.227']
 
 
 def do_clean(number=0):
@@ -14,17 +14,12 @@ def do_clean(number=0):
 
     archives = local("ls ./versions", capture=True)
     archives = archives.split("\n")
-    for i in range(len(archives) - number):
+    archives_length = len(archives) - number
+    for i in range(archives_length):
         local("rm ./versions/{}".format(archives[i]))
 
-    if env.hosts:
-        versions = sudo("ls /data/web_static/releases")
-        versions = versions.split("  ")
-        for i in range(len(versions) - number):
-            sudo("rm -rf /data/web_static/releases/{}".format(versions[i]))
-    else:
-        versions = local("sudo ls /data/web_static/releases")
-        versions = versions.split("  ")
-        for i in range(len(versions) - number):
-            local(
-                "sudo rm -rf /data/web_static/releases/{}".format(versions[i]))
+    versions = sudo("ls /data/web_static/releases")
+    versions = versions.split("  ")
+    versions_length = len(versions) - number
+    for i in range(versions_length):
+        sudo("rm -rf /data/web_static/releases/{}".format(versions[i]))
