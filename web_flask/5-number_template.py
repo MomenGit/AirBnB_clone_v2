@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """A Flask web app that has routes '/' & '/hbnb'"""
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -39,15 +39,7 @@ def number(n):
 @app.route("/number_template/<int:n>", strict_slashes=False)
 def number_template(n):
     """Returns “n is a number”"""
-    return """<!DOCTYPE html>
-<HTML lang="en">
-    <HEAD>
-        <TITLE>HBNB</TITLE>
-    </HEAD>
-    <BODY>
-        <H1>Number: {}</H1>
-    </BODY>
-</HTML>""".format(n)
+    return render_template('5-number.html', n=n).upper()
 
 
 if __name__ == "__main__":
