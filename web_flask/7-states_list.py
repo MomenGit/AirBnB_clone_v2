@@ -16,7 +16,7 @@ app.url_map.strict_slashes = False
 @app.route("/states_list")
 def states_list():
     """Returns an HTML page containing list of states"""
-    states_list = storage.all(State)
+    states_list = storage.all(State).values()
     return render_template("7-states_list.html", states=states_list)
 
 
