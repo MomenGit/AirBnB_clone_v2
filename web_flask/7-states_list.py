@@ -10,10 +10,9 @@ from models import storage
 from models.state import State
 
 app = Flask(__name__)
-app.url_map.strict_slashes = False
 
 
-@app.route("/states_list")
+@app.route("/states_list", strict_slashes=False)
 def states_list():
     """Returns an HTML page containing list of states"""
     states_list = storage.all(State).values()
